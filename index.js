@@ -14,7 +14,10 @@ import connectToDatabase from "./db/db.js"
 env.config()
 
 const app = express()
-app.use(cors())
+app.use(cors({
+    origin: "https://teamtrack-frontend.vercel.app",
+    credentials: true
+}))
 app.use(express.json())
 app.use(express.static("public/uploads"))
 app.use("/api/auth", authRouter)
@@ -26,6 +29,6 @@ app.use("/api/setting", settingRouter)
 app.use("/api/dashboard", dashboardRouter)
 
 app.listen(process.env.PORT, ()=>{
-    console.log(`Server is running on port -https://team-track-ems.onrender.com:${process.env.PORT}`)
+    console.log(`Server is running on port -https://teamtrack-backend.vercel.app:${process.env.PORT}`)
 })
 connectToDatabase()
